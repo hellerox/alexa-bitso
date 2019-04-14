@@ -8,12 +8,6 @@ import (
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 )
 
-var pairDescription = map[string]string{
-	"btc_mxn": "bitcoin en pesos mexicanos",
-	"eth_mxn": "ethereum en pesos mexicanos",
-	"xrp_mxn": "ripple en pesos mexicanos",
-}
-
 var applications = map[string]interface{}{
 	"/health": alexa.StdApplication{
 		Methods: "GET",
@@ -77,9 +71,14 @@ func echoIntentHandler(echoReq *alexa.EchoRequest, echoResp *alexa.EchoResponse)
 func handleAboutIntent(echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 
 	response := alexa.NewEchoResponse()
-	response.OutputSpeech("Te puedo decir los precios de bitso, solo dime alexa, abre bitso, y dame etereum")
+
+	builder := alexa.NewSSMLTextBuilder()
+	builder.AppendSentence("Aquí están los valores más importantes de bitso:")
+	builder.AppendSentence(getBitsoResponse("btc_mxn"))
+	builder.AppendSentence(getBitsoResponse("eth_mxn"))
+	builder.AppendSentence(getBitsoResponse("xrp_mxn"))
+	response.OutputSpeechSSML(builder.Build())
 	response.SimpleCard("About", "Aplicación no oficial")
-	MarketPrices()
 	return response
 }
 

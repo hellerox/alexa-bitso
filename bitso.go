@@ -7,6 +7,12 @@ import (
 	"net/http"
 )
 
+var pairDescription = map[string]string{
+	"btc_mxn": "bitcoin en pesos mexicanos",
+	"eth_mxn": "ethereum en pesos mexicanos",
+	"xrp_mxn": "ripple en pesos mexicanos",
+}
+
 func getBitsoPrice(book string) payload {
 	url := fmt.Sprintf("https://api.bitso.com/v3/ticker/")
 
@@ -39,19 +45,17 @@ func getBitsoPrice(book string) payload {
 	}
 
 	for _, v := range record.Payload {
-		log.Printf("%s y %s", book, v.Book)
 		if book == v.Book {
 			return v
 		}
 	}
 
-	log.Printf("%+v", record)
 	return record.Payload[0]
 }
 
 func getBitsoResponse(book string) (bitsoResponse string) {
 	price := getBitsoPrice(book)
 	log.Printf("resultado para book: %s es %+v", book, price)
-	bitsoResponse = fmt.Sprintf("el precio actual de %s es %s", pairDescription[price.Book], price.Last)
+	bitsoResponse = fmt.Sprintf("el precio de %s es %s", pairDescription[price.Book], price.Last)
 	return
 }
