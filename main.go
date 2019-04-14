@@ -73,7 +73,7 @@ func handleAboutIntent(echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 	response := alexa.NewEchoResponse()
 
 	builder := alexa.NewSSMLTextBuilder()
-	builder.AppendSentence("Aquí están los valores más importantes de bitso:")
+	builder.AppendSentence("Aquí están los últimos precios en bitso:")
 	builder.AppendSentence(getBitsoResponse("btc_mxn"))
 	builder.AppendSentence(getBitsoResponse("eth_mxn"))
 	builder.AppendSentence(getBitsoResponse("xrp_mxn"))
