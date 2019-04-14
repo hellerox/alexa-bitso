@@ -8,9 +8,9 @@ import (
 )
 
 var pairDescription = map[string]string{
-	"btc_mxn": "bitcoin en pesos mexicanos",
-	"eth_mxn": "ethereum en pesos mexicanos",
-	"xrp_mxn": "ripple en pesos mexicanos",
+	"btc_mxn": "bitcoin",
+	"eth_mxn": "ethereum",
+	"xrp_mxn": "ripple",
 }
 
 func getBitsoPrice(book string) payload {
@@ -56,6 +56,6 @@ func getBitsoPrice(book string) payload {
 func getBitsoResponse(book string) (bitsoResponse string) {
 	price := getBitsoPrice(book)
 	log.Printf("resultado para book: %s es %+v", book, price)
-	bitsoResponse = fmt.Sprintf("el precio de %s es %s", pairDescription[price.Book], price.Last)
+	bitsoResponse = fmt.Sprintf("el precio de %s en pesos es %s", pairDescription[price.Book], price.Last)
 	return
 }
