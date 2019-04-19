@@ -2,22 +2,13 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"os"
 
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 )
 
-var applications = map[string]interface{}{
-	"/health": alexa.StdApplication{
-		Methods: "GET",
-		Handler: func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("Ok!"))
-		},
-	},
-}
-
 func main() {
+	applications := make(map[string]interface{})
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT must be set")
@@ -57,7 +48,7 @@ func echoIntentHandler(echoReq *alexa.EchoRequest, echoResp *alexa.EchoResponse)
 	case "AMAZON.HelpIntent":
 		response = handleHelpIntent()
 	default:
-		response = handleAboutIntent(echoReq)
+		response = handleAboutIntent()
 	}
 
 	if response == nil {
@@ -68,7 +59,7 @@ func echoIntentHandler(echoReq *alexa.EchoRequest, echoResp *alexa.EchoResponse)
 	*echoResp = *response
 }
 
-func handleAboutIntent(echoReq *alexa.EchoRequest) *alexa.EchoResponse {
+func handleAboutIntent() *alexa.EchoResponse {
 
 	response := alexa.NewEchoResponse()
 

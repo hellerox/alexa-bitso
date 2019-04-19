@@ -1,0 +1,35 @@
+sudo: required
+
+services:
+- docker
+
+language: go
+
+go:
+- '1.12.3'
+
+env:
+  global:
+  - PACKAGES_TYPES="rpm"
+
+branches:
+  only:
+  - master
+
+before_install:
+- go get -u github.com/golang/dep/cmd/dep
+
+install:
+- dep ensure -v
+
+script:
+- FILE="1" ./scripts/test.sh
+- go build -o build/opt/alexa-bitso/bin/alexa-bitso
+
+after_failure:
+- reports-publisher
+
+after_success:
+- reports-publisher
+
+
