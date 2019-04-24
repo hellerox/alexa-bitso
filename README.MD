@@ -1,5 +1,5 @@
 # BITSO CryptoSpanish SkillServer 
-[![Build Status](https://travis-ci.org/hellerox/alexa-bitso-test.svg?branch=master)](https://travis-ci.org/hellerox/alexa-bitso-test)
+[![Build Status](https://travis-ci.org/hellerox/alexa-bitso.svg?branch=master)](https://travis-ci.org/hellerox/alexa-bitso)
 
 A simple alexa/echo skillserver developed in go using [`go-alexa`](https://github.com/mikeflynn/go-alexa) awesome framework, and BITSO Public API.
 
