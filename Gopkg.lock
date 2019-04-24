@@ -56,7 +56,6 @@
   analyzer-version = 1
   input-imports = [
     "github.com/apisit/binance-go",
-    "github.com/apisit/binance-go/market",
     "github.com/mikeflynn/go-alexa/skillserver",
   ]
   solver-name = "gps-cdcl"

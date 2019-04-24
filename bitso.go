@@ -56,6 +56,6 @@ func getBitsoPrice(book string) payload {
 func getBitsoResponse(book string) (bitsoResponse string) {
 	price := getBitsoPrice(book)
 	log.Printf("resultado para book: %s es %+v", book, price)
-	bitsoResponse = fmt.Sprintf("el último precio de %s, es de %s pesos", pairDescription[price.Book], price.Last)
+	bitsoResponse = fmt.Sprintf("el último precio de %s, es de %s pesos, ", pairDescription[price.Book], price.Last)
 	return
 }
